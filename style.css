@@ -1,0 +1,35 @@
+body {
+  padding: 100px 0px;
+}
+.user-login {
+  margin: 40px 0px;
+  box-shadow: 5px 5px 10px gray;
+  padding: 20px;
+  border-radius: 10px;
+}
+.style {
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.deposit {
+  background-color: blueviolet;
+}
+.withdraw {
+  background-color: lightsalmon;
+}
+.balance {
+  background-color: orange;
+}
+.atm {
+  margin-top: 100px;
+}
+.atm-box {
+  box-shadow: 5px 5px 8px gray;
+  padding: 60px 20px;
+  border-radius: 10px;
+}
+#bank-detail {
+  display: none;
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div id="login">
+        <h1 class="text-center">Pioneer Bank</h1>
+        <!--Login Section-->
+        <div class="user-login">
+          <h5>Login</h5>
+          <br />
+          <input type="text" class="form-control" placeholder="Email" />
+          <br />
+          <input type="text" class="form-control" placeholder="password" />
+          <br />
+          <button id="btn-login" class="btn btn-success">Enter</button>
+        </div>
+      </div>
+
+      <!-- Bank detail & ATM Section-->
+
+      <div id="bank-detail">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="deposit style">
+              <h2>Deposit</h2>
+              <p>$<span id="current-deposit">0</span></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="withdraw style">
+              <h2>Withdraw</h2>
+              <p>$<span id="current-withdraw">0</span></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="balance style">
+              <h2>Balance</h2>
+              <p>$<span id="current-balance">0</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row atm">
+          <div class="col-md-6">
+            <div class="atm-box">
+              <h2>Deposit</h2>
+              <input
+                id="deposit-form"
+                class="form-control"
+                type="number"
+                placeholder="$amount you want to deposit"
+              />
+              <br />
+              <button id="btn-deposit" class="btn btn-success">Deposit</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="atm-box">
+              <h2>Withdraw</h2>
+              <input
+                id="withdraw-form"
+                class="form-control"
+                type="number"
+                placeholder="$amount you want to withdraw"
+              />
+              <br />
+              <button id="btn-withdraw" class="btn btn-success wt">
+                Withdraw
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var loginbtn = document.getElementById("btn-login");
+      loginbtn.onclick = () => {
+        var loginArear = document.getElementById("login");
+        loginArear.style.display = "none";
+
+        var bankDetail = document.getElementById("bank-detail");
+        bankDetail.style.display = "block";
+      };
+
+      //deposit handler
+      const btnDeposit = document.getElementById("btn-deposit");
+      btnDeposit.onclick = () => {
+        var current_deposit = document.getElementById("current-deposit")
+          .innerText;
+
+        var deposit_amount = document.getElementById("deposit-form").value;
+
+        var result = parseInt(current_deposit) + parseInt(deposit_amount);
+        document.getElementById("current-deposit").innerText = result;
+        var current_balance = document.getElementById("current-balance")
+          .innerText;
+        var currentBalanceResult =
+          parseInt(current_balance) + parseInt(deposit_amount);
+        document.getElementById(
+          "current-balance"
+        ).innerText = currentBalanceResult;
+        document.getElementById("deposit-form").value = null;
+      };
+
+      //withdraw handler
+      const btnWithdraw = document.getElementById("btn-withdraw");
+      btnWithdraw.onclick = () => {
+        var currentWithDraw = document.getElementById("current-withdraw")
+          .innerText;
+        var current_balance = document.getElementById("current-balance")
+          .innerText;
+        var withdrawAmount = document.getElementById("withdraw-form").value;
+
+        if (withdrawAmount > current_balance) {
+          alert("You do not have enough amount");
+        } else if (withdrawAmount <= current_balance) {
+          var currentBalanceResult =
+            parseInt(current_balance) - parseInt(withdrawAmount);
+          document.getElementById(
+            "current-balance"
+          ).innerText = currentBalanceResult;
+          var result = parseInt(currentWithDraw) + parseInt(withdrawAmount);
+          document.getElementById("current-withdraw").innerText = result;
+        }
+
+        document.getElementById("withdraw-form").value = "";
+      };
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
